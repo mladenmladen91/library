@@ -1,0 +1,36 @@
+menu:
+  - title: Osnovne Postavke
+    type: heading
+  - title: Meniji
+    type: link
+    icon: "fas fa-fw fa-sitemap"
+    uri: "admin.menu"
+  - title: Stranice Postavke
+    type: heading
+  - title: Stranice
+    type: link
+    icon: "fas fa-fw fa-globe"
+    uri: "admin.page"
+  - title: Kategorije stranica
+    type: link
+    icon: "fas fa-fw fa-globe"
+    uri: "admin.page-categories"	
+
+  - title: Ecomerc
+    type: heading
+  - title: Proizvodi
+    type: link
+    icon: "fas fa-fw fa-th-list"
+    uri: "admin.product"
+  - title: Kategorije proizvoda
+    type: link
+    icon: "fas fa-fw fa-th-list"
+    uri: "admin.product-categories"
+  - title: Popusti
+    type: link
+    icon: "fas fa-fw fa-th-list"
+    uri: "admin.discounts"
+  - title: Porudžbine
+    type: link
+    icon: "fas fa-fw fa-shopping-basket"
+    uri: "admin.orders"
