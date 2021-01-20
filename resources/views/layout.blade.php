@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="@yield('page_description', $page_description ?? '')" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="author" content="">
 
     <title>{{ config('app.name') }} | @yield('title', $page_title ?? '')</title>
@@ -150,9 +151,7 @@
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Flex CMS 2020</span>
-                    </div>
+
                 </div>
             </footer>
             <!-- End of Footer -->
@@ -197,8 +196,8 @@
     <script src="/vendor/startbootstrap-sb-admin-2/js/sb-admin-2.min.js"></script>
     <script src="/js/flex.js"></script>
 
-    {{-- Includable JS --}}
-    @yield('scripts')
-</body>
+        {{--Includable JS--}}
+        @yield('scripts') 
+	</body>
 
-</html>
+            </html>
