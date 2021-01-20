@@ -21,7 +21,11 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'role_id',
+        'address',
+        'image',
         'password',
+        'activation'
     ];
 
     /**
@@ -42,4 +46,18 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+    // checking if the user is admin
+    public function isAdmin()
+    {
+        if ($this->role_id == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
