@@ -119,8 +119,7 @@ function deleteUser(id) {
       //console.log(r);
     });
 }
-//function for activation users
-// function for getting users
+//function for activation user
 function activateUser(id) {
   let altToken = "";
   getToken();

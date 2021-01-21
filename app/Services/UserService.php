@@ -3,7 +3,7 @@
 
 namespace App\Services;
 
-use App\Repositories\UserRepository;
+use App\Interfaces\UserRepositoryInterface;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
@@ -15,7 +15,7 @@ class UserService
     private $userRepository;
 
 
-    public function __construct(UserRepository $userRepository)
+    public function __construct(UserRepositoryInterface $userRepository)
     {
         $this->userRepository = $userRepository;
     }
