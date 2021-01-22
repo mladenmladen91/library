@@ -60,4 +60,12 @@ class User extends Authenticatable
             return false;
         }
     }
+    public function notUser()
+    {
+        if ($this->role_id == 1 || $this->role_id == 2) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

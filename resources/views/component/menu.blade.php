@@ -67,7 +67,7 @@
                 <a style="text-decoration: none;color: #7e7e7e;" href="{{route('book-category.index')}}">Kategorije knjiga</a>
             </li>
             <li>
-                <a style="text-decoration: none;color: #7e7e7e;" href="#">Sve knjige</a>
+                <a style="text-decoration: none;color: #7e7e7e;" href="{{route('book.index')}}">Sve knjige</a>
             </li>
         </ul>
     </li>

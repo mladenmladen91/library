@@ -22,6 +22,9 @@ Auth::routes(["register" => false]);
 Route::get('/register', [App\Http\Controllers\FrontController::class, 'register'])->name('front.register');
 Route::post('/user/register', [App\Http\Controllers\UserController::class, 'register'])->name('register');
 
+/** route for getting available books */
+Route::post('/book/all', [App\Http\Controllers\BookController::class, 'all'])->name('book.all');
+Route::post('/book/get', [App\Http\Controllers\BookController::class, 'getBook'])->name('book.get');
 
 Route::group(
     ['prefix' => 'admin/'],
@@ -46,6 +49,11 @@ Route::group(
                         Route::get('/book-category/index', [App\Http\Controllers\BookCategoryController::class, 'index'])->name('book-category.index');
                         Route::get('/book-category/all', [App\Http\Controllers\BookCategoryController::class, 'all'])->name('book-category.all');
 
+                        /* book routes */
+                        Route::get('/book/index', [App\Http\Controllers\BookController::class, 'index'])->name('book.index');
+                        Route::get('/book/create', [App\Http\Controllers\BookController::class, 'create'])->name('book.create');
+                        Route::get('/book/edit/{id}', [App\Http\Controllers\BookController::class, 'edit'])->name('book.edit');
+
                         /* api routes */
                         Route::group(
                             ['middleware' => 'auth:api'],
@@ -62,6 +70,11 @@ Route::group(
                                 Route::post('/book-category/store', [App\Http\Controllers\BookCategoryController::class, 'store'])->name('book-category.store');
                                 Route::post('/book-category/update', [App\Http\Controllers\BookCategoryController::class, 'update'])->name('book-category.update');
                                 Route::post('/book-category/delete', [App\Http\Controllers\BookCategoryController::class, 'delete'])->name('book-category.delete');
+
+                                /* api routes for books */
+                                Route::post('/book/store', [App\Http\Controllers\BookController::class, 'store'])->name('book.store');
+                                Route::post('/book/update', [App\Http\Controllers\BookController::class, 'update'])->name('book.update');
+                                Route::post('/book/delete', [App\Http\Controllers\BookController::class, 'delete'])->name('book.delete');
                             }
                         );
                     }
