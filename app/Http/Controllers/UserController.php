@@ -17,8 +17,8 @@ class UserController extends Controller
 
     public function __construct(UserService $userService)
     {
-        $this->middleware(['admin'])->except(['register', 'all', 'store', 'getUser', 'update', 'delete', 'activate']);
-        $this->middleware(['adminApi'])->except(['index', 'create', 'edit', 'register']);
+        $this->middleware(['admin'])->except(['register', 'all', 'store', 'getUser', 'update', 'delete', 'activate', 'particular', 'history']);
+        $this->middleware(['adminApi'])->except(['index', 'create', 'edit', 'register', 'particular', 'history']);
         $this->userService = $userService;
     }
 
@@ -454,5 +454,13 @@ class UserController extends Controller
 
         $result = $this->userService->activate($request);
         return $result;
+    }
+    public function particular()
+    {
+        return view('frontend.users.particular');
+    }
+    public function history()
+    {
+        return view('frontend.users.history');
     }
 }

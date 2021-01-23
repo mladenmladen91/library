@@ -115,4 +115,26 @@ function deleteBook(id) {
     });
 }
 
-
+// function for sreserving book
+function reserveBook(form) {
+  let altToken = "";
+  getToken();
+  altToken = localStorage.getItem('token');
+  let formData = new FormData(form);
+  return fetch('/api/reservation/book', {
+    method: "POST",
+    headers: {
+      'Authorization': 'Bearer ' + altToken
+    },
+    /*withCredentials: true,
+    credentials: 'include',*/
+    body: formData
+  }).then(function (response) {
+    response.json().then(function (json) {
+      alert(json.message);
+      location.reload();
+    });
+  }).catch(function (r) {
+    return reject(r)
+  });
+}

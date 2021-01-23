@@ -4,6 +4,9 @@ function getUsers(page) {
   let altToken = "";
   getToken();
   altToken = localStorage.getItem('token');
+  if (!localStorage.getItem("token")) {
+    location.reload();
+  }
   return fetch('/api/user/all', {
     method: "POST",
     headers: {

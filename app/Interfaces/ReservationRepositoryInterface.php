@@ -14,5 +14,7 @@ interface ReservationRepositoryInterface
 
     public function all(Request $request);
 
+    public function history(Request $request);
+
     public function delete(Request $request);
 }

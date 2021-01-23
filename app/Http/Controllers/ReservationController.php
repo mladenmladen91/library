@@ -16,8 +16,8 @@ class ReservationController extends Controller
 
     public function __construct(ReservationService $reservationService)
     {
-        $this->middleware(['higher'])->except(['all', 'store', 'delete', 'activate', 'userBooks']);
-        $this->middleware(['higherApi'])->except(['index']);
+        $this->middleware(['higher'])->except(['all', 'store', 'delete', 'activate', 'userBooks', 'book', 'history']);
+        $this->middleware(['higherApi'])->except(['index', 'book', 'history']);
         $this->reservationService = $reservationService;
     }
 
@@ -294,6 +294,77 @@ class ReservationController extends Controller
     public function activate(Request $request)
     {
         $result = $this->reservationService->activate($request);
+        return $result;
+    }
+    /**
+     * @OA\Post(
+     *      path="/api/reservation/book",
+     *      operationId="bookReservation",
+     *      tags={"Users"},
+     *      summary="book reservation",
+     *      description="book reservation",
+     * security={
+     *  {"passport": {}},
+     *   },
+     * @OA\Parameter(
+     *      name="book_id",
+     *      in="path",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="integer"
+     *      )
+     *   ),
+     * @OA\Parameter(
+     *      name="user_id",
+     *      in="path",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="integer"
+     *      )
+     *   ),
+     * @OA\Parameter(
+     *      name="period",
+     *      in="path",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="integer"
+     *      )
+     *   ), 
+     *  @OA\Response(
+     *          response=200,
+     *          description="Success",
+     *          @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      ),
+     * @OA\Response(
+     *      response=400,
+     *      description="Bad Request"
+     *   ),
+     * @OA\Response(
+     *      response=404,
+     *      description="not found"
+     *   )
+     * 
+     *     )
+     */
+    public function book(Request $request)
+    {
+        $result = $this->reservationService->book($request);
+        return $result;
+    }
+
+    public function history(Request $request)
+    {
+        $result = $this->reservationService->history($request);
         return $result;
     }
 }
