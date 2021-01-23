@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -54,29 +55,49 @@ Route::group(
                         Route::get('/book/create', [App\Http\Controllers\BookController::class, 'create'])->name('book.create');
                         Route::get('/book/edit/{id}', [App\Http\Controllers\BookController::class, 'edit'])->name('book.edit');
 
-                        /* api routes */
-                        Route::group(
-                            ['middleware' => 'auth:api'],
-                            function () {
-                                /* api routes for users */
-                                Route::post('/user/all', [App\Http\Controllers\UserController::class, 'all'])->name('user.all');
-                                Route::post('/user/get', [App\Http\Controllers\UserController::class, 'getUser'])->name('user.get');
-                                Route::post('/user/store', [App\Http\Controllers\UserController::class, 'store'])->name('user.store');
-                                Route::post('/user/update', [App\Http\Controllers\UserController::class, 'update'])->name('user.update');
-                                Route::post('/user/delete', [App\Http\Controllers\UserController::class, 'delete'])->name('user.delete');
-                                Route::post('/user/activate', [App\Http\Controllers\UserController::class, 'activate'])->name('user.activate');
+                        /* book routes */
+                        Route::get('/reservation/index', [App\Http\Controllers\ReservationController::class, 'index'])->name('reservation.index');
+                    }
+                );
+            }
+        );
+    }
+);
 
-                                /* api routes for categories */
-                                Route::post('/book-category/store', [App\Http\Controllers\BookCategoryController::class, 'store'])->name('book-category.store');
-                                Route::post('/book-category/update', [App\Http\Controllers\BookCategoryController::class, 'update'])->name('book-category.update');
-                                Route::post('/book-category/delete', [App\Http\Controllers\BookCategoryController::class, 'delete'])->name('book-category.delete');
+Route::group(
+    ['prefix' => 'api/'],
+    function () {
+        Route::group(
+            [],
+            function () {
+                /* api routes */
+                Route::group(
+                    ['middleware' => 'auth:api'],
+                    function () {
+                        /* api routes for users */
+                        Route::post('/user/all', [App\Http\Controllers\UserController::class, 'all'])->name('user.all');
+                        Route::post('/user/get', [App\Http\Controllers\UserController::class, 'getUser'])->name('user.get');
+                        Route::post('/user/store', [App\Http\Controllers\UserController::class, 'store'])->name('user.store');
+                        Route::post('/user/update', [App\Http\Controllers\UserController::class, 'update'])->name('user.update');
+                        Route::post('/user/delete', [App\Http\Controllers\UserController::class, 'delete'])->name('user.delete');
+                        Route::post('/user/activate', [App\Http\Controllers\UserController::class, 'activate'])->name('user.activate');
 
-                                /* api routes for books */
-                                Route::post('/book/store', [App\Http\Controllers\BookController::class, 'store'])->name('book.store');
-                                Route::post('/book/update', [App\Http\Controllers\BookController::class, 'update'])->name('book.update');
-                                Route::post('/book/delete', [App\Http\Controllers\BookController::class, 'delete'])->name('book.delete');
-                            }
-                        );
+                        /* api routes for categories */
+                        Route::post('/book-category/store', [App\Http\Controllers\BookCategoryController::class, 'store'])->name('book-category.store');
+                        Route::post('/book-category/update', [App\Http\Controllers\BookCategoryController::class, 'update'])->name('book-category.update');
+                        Route::post('/book-category/delete', [App\Http\Controllers\BookCategoryController::class, 'delete'])->name('book-category.delete');
+
+                        /* api routes for books */
+                        Route::post('/book/store', [App\Http\Controllers\BookController::class, 'store'])->name('book.store');
+                        Route::post('/book/update', [App\Http\Controllers\BookController::class, 'update'])->name('book.update');
+                        Route::post('/book/delete', [App\Http\Controllers\BookController::class, 'delete'])->name('book.delete');
+
+                        /* api routes for reservations */
+                        Route::post('/reservation/all', [App\Http\Controllers\ReservationController::class, 'all'])->name('reservation.all');
+                        Route::get('/reservation/users-and-books', [App\Http\Controllers\ReservationController::class, 'usersBooks'])->name('reservation.usersBooks');
+                        Route::post('/reservation/store', [App\Http\Controllers\ReservationController::class, 'store'])->name('reservation.store');
+                        Route::post('/reservation/delete', [App\Http\Controllers\ReservationController::class, 'delete'])->name('reservation.delete');
+                        Route::post('/reservation/activate', [App\Http\Controllers\ReservationController::class, 'activate'])->name('reservation.activate');
                     }
                 );
             }

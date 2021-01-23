@@ -60,6 +60,22 @@ class User extends Authenticatable
             return false;
         }
     }
+    public function isApiAdmin()
+    {
+        if (auth('api')->user()->role_id == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function notUserApi()
+    {
+        if (auth('api')->user()->role_id == 1 || auth('api')->user()->role_id == 2) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     public function notUser()
     {
         if ($this->role_id == 1 || $this->role_id == 2) {

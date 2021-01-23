@@ -18,11 +18,10 @@ function addCategory(name) {
   let altToken = "";
   getToken();
   altToken = localStorage.getItem('token');
-  return fetch('/admin/book-category/store', {
+  return fetch('/api/book-category/store', {
     method: "POST",
     headers: {
       'Content-Type': 'application/json',
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
       'Authorization': 'Bearer ' + altToken
     },
     withCredentials: true,
@@ -46,11 +45,10 @@ function updateCategory(name, id) {
   let altToken = "";
   getToken();
   altToken = localStorage.getItem('token');
-  return fetch('/admin/book-category/update', {
+  return fetch('/api/book-category/update', {
     method: "POST",
     headers: {
       'Content-Type': 'application/json',
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
       'Authorization': 'Bearer ' + altToken
     },
     withCredentials: true,
@@ -73,11 +71,10 @@ function deleteCategory(id) {
   let altToken = "";
   getToken();
   altToken = localStorage.getItem('token');
-  return fetch('/admin/book-category/delete', {
+  return fetch('/api/book-category/delete', {
     method: "POST",
     headers: {
       'Content-Type': 'application/json',
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
       'Authorization': 'Bearer ' + altToken
     },
     withCredentials: true,

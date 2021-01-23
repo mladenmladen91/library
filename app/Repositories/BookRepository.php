@@ -16,7 +16,7 @@ class BookRepository implements BookRepositoryInterface
         $this->book = $book;
     }
 
-    // function getting all users and fill the tabkle with it
+    // function getting all books and fill the table with it
     public function all($request)
     {
         $books = Book::query();
@@ -37,13 +37,13 @@ class BookRepository implements BookRepositoryInterface
             ->get();
         return response()->json(["success" => true, "books" => $books]);
     }
-    // saving new user data
+    // saving new book data
     public function save($request)
     {
         Book::create($request->all());
         return response()->json(["success" => true, "message" => "Knjiga uspješno kreirana!"]);
     }
-    // updating user data
+    // updating book data
     public function update($request)
     {
         $input = $request->except(['id']);
@@ -51,7 +51,7 @@ class BookRepository implements BookRepositoryInterface
         $book->update($input);
         return response()->json(["success" => true, "message" => "Knjiga uspješno updejtovana!"]);
     }
-    // deleting user
+    // deleting book
     public function delete($request)
     {
         $book = Book::find($request->id);

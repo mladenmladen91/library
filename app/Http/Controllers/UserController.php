@@ -17,7 +17,8 @@ class UserController extends Controller
 
     public function __construct(UserService $userService)
     {
-        $this->middleware(['admin'])->except('register');
+        $this->middleware(['admin'])->except(['register', 'all', 'store', 'getUser', 'update', 'delete', 'activate']);
+        $this->middleware(['adminApi'])->except(['index', 'create', 'edit', 'register']);
         $this->userService = $userService;
     }
 
@@ -28,7 +29,7 @@ class UserController extends Controller
     }
     /**
      * @OA\Post(
-     *      path="/admin/user/all",
+     *      path="/api/user/all",
      *      operationId="getUsersList",
      *      tags={"Users"},
      *      summary="Get user list",
@@ -89,7 +90,7 @@ class UserController extends Controller
     }
     /**
      * @OA\Post(
-     *      path="/admin/user/store",
+     *      path="/api/user/store",
      *      operationId="storeUser",
      *      tags={"Users"},
      *      summary="creating user",
@@ -159,7 +160,7 @@ class UserController extends Controller
     }
     /**
      * @OA\Post(
-     *      path="/admin/user/get",
+     *      path="/api/user/get",
      *      operationId="getUser",
      *      tags={"Users"},
      *      summary="get data for particular user",
@@ -208,7 +209,7 @@ class UserController extends Controller
     }
     /**
      * @OA\Post(
-     *      path="/admin/user/update",
+     *      path="/api/user/update",
      *      operationId="updateUser",
      *      tags={"Users"},
      *      summary="updating user",
@@ -273,7 +274,7 @@ class UserController extends Controller
     }
     /**
      * @OA\Post(
-     *      path="/admin/user/delete",
+     *      path="/api/user/delete",
      *      operationId="deleteUser",
      *      tags={"Users"},
      *      summary="delete user",
@@ -355,6 +356,14 @@ class UserController extends Controller
      *           type="string"
      *      )
      *   ),
+     * @OA\Parameter(
+     *      name="password_confirmation",
+     *      in="path",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="string"
+     *      )
+     *   ), 
      *  @OA\Response(
      *          response=200,
      *          description="Success",
@@ -397,7 +406,7 @@ class UserController extends Controller
     }
     /**
      * @OA\Post(
-     *      path="/admin/user/activate",
+     *      path="/api/user/activate",
      *      operationId="activateUser",
      *      tags={"Users"},
      *      summary="activate user",
