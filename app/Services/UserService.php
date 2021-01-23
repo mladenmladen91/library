@@ -75,15 +75,15 @@ class UserService
             "id" => $request->id,
         ];
 
-        // try {
-        Mail::send('sendContact', $data, function ($message) use ($data) {
-            $message->to("jelovacmladen@gmail.com")->subject("Novi korisnik");
-            $message->from('no-reply@test.me', 'library.me');
-        });
-        // return response()->json(["success" => true, "message" => "Message sent"]);
-        // } catch (\Exception $e) {
-        // return response()->json(["success" => false, "message" => $e]);
-        // }
+        try {
+            Mail::send('sendContact', $data, function ($message) use ($data) {
+                $message->to("jelovacmladen@gmail.com")->subject("Novi korisnik");
+                $message->from('no-reply@test.me', 'library.me');
+            });
+            return response()->json(["success" => true, "message" => "Poruka psolata"]);
+        } catch (\Exception $e) {
+            return response()->json(["success" => false, "message" => "Mail nije poslat"]);
+        }
     }
     public function activate($request)
     {

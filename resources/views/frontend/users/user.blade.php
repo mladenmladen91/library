@@ -113,6 +113,7 @@
 
 
 
+
 		//paginate table
 		// getting data for the previous page
 		document.querySelector('#dataTable_previous').addEventListener("click", () => {

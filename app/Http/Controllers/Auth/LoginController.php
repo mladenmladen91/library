@@ -53,6 +53,8 @@ class LoginController extends Controller
                 return redirect()->back();
             }
             return redirect()->route('home');
+        } else {
+            return redirect()->back()->withErrors($validator);
         }
     }
 }

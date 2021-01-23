@@ -45,6 +45,8 @@ Route::group(
                         Route::get('/user/index', [App\Http\Controllers\UserController::class, 'index'])->name('user.index');
                         Route::get('/user/create', [App\Http\Controllers\UserController::class, 'create'])->name('user.create');
                         Route::get('/user/edit/{id}', [App\Http\Controllers\UserController::class, 'edit'])->name('user.edit');
+                        Route::get('/user/particular', [App\Http\Controllers\UserController::class, 'particular'])->name('particular.index');
+                        Route::get('/user/history', [App\Http\Controllers\UserController::class, 'history'])->name('particular.history');
 
                         /* book category routes */
                         Route::get('/book-category/index', [App\Http\Controllers\BookCategoryController::class, 'index'])->name('book-category.index');
@@ -94,10 +96,12 @@ Route::group(
 
                         /* api routes for reservations */
                         Route::post('/reservation/all', [App\Http\Controllers\ReservationController::class, 'all'])->name('reservation.all');
+                        Route::post('/reservation/history', [App\Http\Controllers\ReservationController::class, 'history'])->name('reservation.history');
                         Route::get('/reservation/users-and-books', [App\Http\Controllers\ReservationController::class, 'usersBooks'])->name('reservation.usersBooks');
                         Route::post('/reservation/store', [App\Http\Controllers\ReservationController::class, 'store'])->name('reservation.store');
                         Route::post('/reservation/delete', [App\Http\Controllers\ReservationController::class, 'delete'])->name('reservation.delete');
                         Route::post('/reservation/activate', [App\Http\Controllers\ReservationController::class, 'activate'])->name('reservation.activate');
+                        Route::post('/reservation/book', [App\Http\Controllers\ReservationController::class, 'book'])->name('reservation.book');
                     }
                 );
             }

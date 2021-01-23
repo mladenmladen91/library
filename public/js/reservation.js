@@ -58,6 +58,7 @@ function addReservation(form) {
   }).then(function (response) {
     response.json().then(function (json) {
       if (json.success == true) {
+        alert(json.message);
         window.location = '/admin/reservation/index';
       } else {
         alert("Popunite sve podatke");
@@ -117,3 +118,26 @@ function activateReservation(id, bookId) {
     });
 }
 
+// function for getting reservations
+function getHistory(id) {
+  let altToken = "";
+  getToken();
+  altToken = localStorage.getItem('token');
+  return fetch('/api/reservation/history', {
+    method: "POST",
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + altToken
+    },
+    /*withCredentials: true,
+    credentials: 'include', */
+    body: JSON.stringify({ id: id })
+  }).then((response) => response.json())
+    .then((responseData) => {
+      return responseData;
+      //console.log(responseData);
+    }).catch(function (r) {
+      //console.log(r);
+    });
+}

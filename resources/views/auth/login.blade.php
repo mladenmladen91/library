@@ -62,7 +62,7 @@
 
                             @error('password')
                             <span class="invalid-feedback" role="alert">
-                                <strong>{Unesite ispravne podatke</strong>
+                                <strong>Unesite ispravne podatke</strong>
                             </span>
                             @enderror
                         </div>
