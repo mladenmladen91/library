@@ -2,34 +2,36 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Book;
-use Illuminate\Support\Facades\Validator;
+use App\Models\Reservation;
 use Illuminate\Http\Request;
-use App\Services\BookService;
+use App\Models\Book;
+use App\Models\User;
+use App\Services\ReservationService;
+use Illuminate\Support\Facades\Validator;
 
-class BookController extends Controller
+class ReservationController extends Controller
 {
 
-    private $bookService;
+    private $reservationService;
 
-    public function __construct(BookService $bookService)
+    public function __construct(ReservationService $reservationService)
     {
-        $this->middleware(['higher'])->except(['all', 'store', 'update', 'delete', 'getBook']);
-        $this->middleware(['higherApi'])->except(['all', 'index', 'create', 'edit', 'getBook']);
-        $this->bookService = $bookService;
+        $this->middleware(['higher'])->except(['all', 'store', 'delete', 'activate', 'userBooks']);
+        $this->middleware(['higherApi'])->except(['index']);
+        $this->reservationService = $reservationService;
     }
 
     public function index()
     {
-        return view('frontend.books.books');
+        return view("frontend.reservations.index");
     }
     /**
      * @OA\Post(
-     *      path="/book/all",
-     *      operationId="getBookList",
-     *      tags={"Books"},
-     *      summary="Get book list",
-     *      description="Returns list of books",
+     *      path="/api/reservation/all",
+     *      operationId="getReservationList",
+     *      tags={"Reservations"},
+     *      summary="Get reservation list",
+     *      description="Returns list of reservations",
      * security={
      *  {"passport": {}},
      *   },
@@ -77,40 +79,79 @@ class BookController extends Controller
      */
     public function all(Request $request)
     {
-        $result = $this->bookService->all($request);
+        $result = $this->reservationService->all($request);
+        return $result;
+    }
+    /**
+     * @OA\Get(
+     *      path="/api/reservation/users-and-books",
+     *      operationId="getAvailableUsersBooksList",
+     *      tags={"Reservations"},
+     *      summary="Get users and books list",
+     *      description="Returns list of books and users",
+     * security={
+     *  {"passport": {}},
+     *   },
+     *  @OA\Response(
+     *          response=200,
+     *          description="Success",
+     *          @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      ),
+     * @OA\Response(
+     *      response=400,
+     *      description="Bad Request"
+     *   ),
+     * @OA\Response(
+     *      response=404,
+     *      description="not found"
+     *   )
+     * 
+     *     )
+     */
+    public function usersBooks()
+    {
+        $result = $this->reservationService->usersBooks();
         return $result;
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('frontend.books.create');
-    }
-
-    /**
      * @OA\Post(
-     *      path="/api/book/store",
-     *      operationId="storeBook",
-     *      tags={"Books"},
-     *      summary="creating book",
-     *      description="route for creating book",
+     *      path="/api/reservation/store",
+     *      operationId="storeReservation",
+     *      tags={"reservationss"},
+     *      summary="creating reservation",
+     *      description="route for creating reservation",
      * security={
      *  {"passport": {}},
      *   },
-     *   @OA\Parameter(
-     *      name="title",
+     * @OA\Parameter(
+     *      name="user_id",
      *      in="path",
      *      required=true,
      *      @OA\Schema(
-     *           type="string"
+     *           type="integer"
      *      )
      *   ),
      * @OA\Parameter(
-     *      name="category_id",
+     *      name="book_id",
+     *      in="path",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="integer"
+     *      )
+     *   ),
+     * @OA\Parameter(
+     *      name="period",
      *      in="path",
      *      required=true,
      *      @OA\Schema(
@@ -145,139 +186,17 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        $result = $this->bookService->save($request);
+        $result = $this->reservationService->save($request);
         return $result;
     }
 
     /**
      * @OA\Post(
-     *      path="/book/get",
-     *      operationId="getBookr",
-     *      tags={"Books"},
-     *      summary="get data for particular book",
-     *      description="book data route",
-     * security={
-     *  {"passport": {}},
-     *   },
-     *   @OA\Parameter(
-     *      name="id",
-     *      in="path",
-     *      required=true,
-     *      @OA\Schema(
-     *           type="integer"
-     *      )
-     *   ),
-     *  @OA\Response(
-     *          response=200,
-     *          description="Success",
-     *          @OA\MediaType(
-     *           mediaType="application/json",
-     *      )
-     *      ),
-     *      @OA\Response(
-     *          response=401,
-     *          description="Unauthenticated",
-     *      ),
-     *      @OA\Response(
-     *          response=403,
-     *          description="Forbidden"
-     *      ),
-     * @OA\Response(
-     *      response=400,
-     *      description="Bad Request"
-     *   ),
-     * @OA\Response(
-     *      response=404,
-     *      description="not found"
-     *   )
-     * 
-     *     )
-     */
-    public function getBook(Request $request)
-    {
-        $result = $this->bookService->getBook($request);
-        return $result;
-    }
-
-
-    public function edit($id)
-    {
-        return view('frontend.books.edit', compact('id'));
-    }
-
-    /**
-     * @OA\Post(
-     *      path="/api/book/update",
-     *      operationId="updateBook",
-     *      tags={"Books"},
-     *      summary="updating book",
-     *      description="route for updating book",
-     * security={
-     *  {"passport": {}},
-     *   },
-     *   @OA\Parameter(
-     *      name="title",
-     *      in="path",
-     *      required=true,
-     *      @OA\Schema(
-     *           type="string"
-     *      )
-     *   ),
-     *   @OA\Parameter(
-     *      name="category_id",
-     *      in="path",
-     *      required=true,
-     *      @OA\Schema(
-     *           type="integer"
-     *      )
-     *   ),
-     * @OA\Parameter(
-     *      name="id",
-     *      in="path",
-     *      required=true,
-     *      @OA\Schema(
-     *           type="integer"
-     *      )
-     *   ),
-     *  @OA\Response(
-     *          response=200,
-     *          description="Success",
-     *          @OA\MediaType(
-     *           mediaType="application/json",
-     *      )
-     *      ),
-     *      @OA\Response(
-     *          response=401,
-     *          description="Unauthenticated",
-     *      ),
-     *      @OA\Response(
-     *          response=403,
-     *          description="Forbidden"
-     *      ),
-     * @OA\Response(
-     *      response=400,
-     *      description="Bad Request"
-     *   ),
-     * @OA\Response(
-     *      response=404,
-     *      description="not found"
-     *   )
-     * 
-     *     )
-     */
-    public function update(Request $request)
-    {
-        $result = $this->bookService->update($request);
-        return $result;
-    }
-
-    /**
-     * @OA\Post(
-     *      path="/api/book/delete",
-     *      operationId="deleteBook",
-     *      tags={"Books"},
-     *      summary="delete book",
-     *      description="delete book",
+     *      path="/api/reservation/delete",
+     *      operationId="deletereservation",
+     *      tags={"Reservations"},
+     *      summary="delete reservation",
+     *      description="delete reservation",
      * security={
      *  {"passport": {}},
      *   },
@@ -317,8 +236,64 @@ class BookController extends Controller
      */
     public function delete(Request $request)
     {
-
-        $result = $this->bookService->delete($request);
+        $result = $this->reservationService->delete($request);
+        return $result;
+    }
+    /**
+     * @OA\Post(
+     *      path="/api/reservation/activate",
+     *      operationId="activateReservation",
+     *      tags={"Users"},
+     *      summary="activate reservation",
+     *      description="activate reservation",
+     * security={
+     *  {"passport": {}},
+     *   },
+     *   @OA\Parameter(
+     *      name="id",
+     *      in="path",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="integer"
+     *      )
+     *   ),
+     * @OA\Parameter(
+     *      name="book_id",
+     *      in="path",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="integer"
+     *      )
+     *   ), 
+     *  @OA\Response(
+     *          response=200,
+     *          description="Success",
+     *          @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      ),
+     * @OA\Response(
+     *      response=400,
+     *      description="Bad Request"
+     *   ),
+     * @OA\Response(
+     *      response=404,
+     *      description="not found"
+     *   )
+     * 
+     *     )
+     */
+    public function activate(Request $request)
+    {
+        $result = $this->reservationService->activate($request);
         return $result;
     }
 }

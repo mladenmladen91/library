@@ -13,7 +13,8 @@ class BookCategoryController extends Controller
 
     public function __construct(BookCategoryService $bookCategoryService)
     {
-        $this->middleware(['higher'])->except('all');
+        $this->middleware(['higher'])->except('store', 'update', 'delete');
+        $this->middleware(['higherApi'])->except(['all', 'index', 'create', 'edit', 'getBook']);
         $this->bookCategoryService = $bookCategoryService;
     }
 
@@ -66,7 +67,7 @@ class BookCategoryController extends Controller
 
     /**
      * @OA\Post(
-     *      path="/admin/book-category/store",
+     *      path="/api/book-category/store",
      *      operationId="storeCategory",
      *      tags={"Books"},
      *      summary="creating category",
@@ -116,7 +117,7 @@ class BookCategoryController extends Controller
 
     /**
      * @OA\Post(
-     *      path="/admin/book-category/update",
+     *      path="/api/book-category/update",
      *      operationId="updateCategory",
      *      tags={"Books"},
      *      summary="updating category",
@@ -174,7 +175,7 @@ class BookCategoryController extends Controller
 
     /**
      * @OA\Post(
-     *      path="/admin/book-category/delete",
+     *      path="/api/book-category/delete",
      *      operationId="deleteCategory",
      *      tags={"Books"},
      *      summary="delete category",

@@ -3,19 +3,22 @@
 
 namespace App\Services;
 
-use App\Interfaces\BookRepositoryInterface;
+use App\Interfaces\ReservationRepositoryInterface;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Reservation;
+use App\Models\Book;
+use App\Models\User;
 
 
-class BookService
+class ReservationService
 {
-    /** @var $bookRepository */
-    private $bookRepository;
+    /** @var $reservationRepository */
+    private $reservationRepository;
 
 
-    public function __construct(BookRepositoryInterface $bookRepository)
+    public function __construct(ReservationRepositoryInterface $reservationRepository)
     {
-        $this->bookRepository = $bookRepository;
+        $this->reservationRepository = $reservationRepository;
     }
 
     // getting category data from the repository and send them to the controller
@@ -28,52 +31,56 @@ class BookService
         if ($validator->fails()) {
             return response()->json(["success" => false, "message" => $validator->messages()]);
         }
-        return $this->bookRepository->all($request);
+        return $this->reservationRepository->all($request);
     }
     // accepting the request and pass it to the saving repository
     public function save($request)
     {
         $validator = Validator::make($request->all(), [
-            'title' => 'required',
-            'category_id' => 'required'
+            'user_id' => 'required',
+            'book_id' => 'required',
+            'period' => 'required'
         ]);
         if ($validator->fails()) {
             return response()->json(["success" => false, "message" => $validator->messages()]);
         }
 
-        return $this->bookRepository->save($request);
+        return $this->reservationRepository->save($request);
     }
-    // accepting the request and pass it to the updating repository
-    public function update($request)
-    {
-        $validator = Validator::make($request->all(), [
-            'title' => 'required',
-            'category_id' => 'required'
-        ]);
-        if ($validator->fails()) {
-            return response()->json(["success" => false, "message" => $validator->messages()]);
-        }
-        return $this->bookRepository->update($request);
-    }
+
     // delete data
     public function delete($request)
     {
         $validator = Validator::make($request->all(), [
-            'id' => 'required',
+            'id' => 'required'
         ]);
         if ($validator->fails()) {
             return response()->json(["success" => false, "message" => $validator->messages()]);
         }
-        return $this->bookRepository->delete($request);
+        return $this->reservationRepository->delete($request);
     }
-    public function getBook($request)
+    public function activate($request)
     {
         $validator = Validator::make($request->all(), [
             'id' => 'required',
+            'book_id' => 'required'
         ]);
         if ($validator->fails()) {
             return response()->json(["success" => false, "message" => $validator->messages()]);
         }
-        return $this->bookRepository->getBook($request);
+        $reservation = Reservation::find($request->id);
+        $reservation->approved = 1;
+        $reservation->update();
+
+        $book = Book::find($request->book_id);
+        $book->status = 0;
+        $book->update();
+        return response()->json(["success" => true, "message" => "Rezervacija dozvoljena"]);
+    }
+    public function usersBooks()
+    {
+        $users = User::where("role_id", "=", 2)->get();
+        $books = Book::where("status", "=", 1)->get();
+        return response()->json(["success" => true, "users" => $users, "books" => $books]);
     }
 }

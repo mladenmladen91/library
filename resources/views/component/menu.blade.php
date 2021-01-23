@@ -69,6 +69,9 @@
             <li>
                 <a style="text-decoration: none;color: #7e7e7e;" href="{{route('book.index')}}">Sve knjige</a>
             </li>
+            <li>
+                <a style="text-decoration: none;color: #7e7e7e;" href="{{route('reservation.index')}}">Rezervacije</a>
+            </li>
         </ul>
     </li>
 

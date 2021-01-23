@@ -8,7 +8,7 @@ function getPages(page, phrase, status) {
     method: "POST",
     headers: {
       'Accept': 'application/json',
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+      // 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
       'Content-Type': 'application/json'
     },
     /*withCredentials: true,
@@ -22,16 +22,16 @@ function getPages(page, phrase, status) {
       //console.log(r);
     });
 }
-// function for storing user
+// function for storing book
 function addBook(form) {
   let altToken = "";
   getToken();
   altToken = localStorage.getItem('token');
   let formData = new FormData(form);
-  return fetch('/admin/book/store', {
+  return fetch('/api/book/store', {
     method: "POST",
     headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+      // 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
       'Authorization': 'Bearer ' + altToken
     },
     withCredentials: true,
@@ -55,7 +55,7 @@ function getBook(id) {
     method: "POST",
     headers: {
       'Content-Type': 'application/json',
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+      // 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
     },
     body: JSON.stringify({ id: id })
   }).then((response) => response.json())
@@ -71,10 +71,10 @@ function updateBook(form) {
   getToken();
   altToken = localStorage.getItem('token');
   let formData = new FormData(form);
-  return fetch('/admin/book/update', {
+  return fetch('/api/book/update', {
     method: "POST",
     headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+      // 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
       'Authorization': 'Bearer ' + altToken
     },
     withCredentials: true,
@@ -97,11 +97,11 @@ function deleteBook(id) {
   let altToken = "";
   getToken();
   altToken = localStorage.getItem('token');
-  return fetch('/admin/book/delete', {
+  return fetch('/api/book/delete', {
     method: "POST",
     headers: {
       'Content-Type': 'application/json',
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+      // 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
       'Authorization': 'Bearer ' + altToken
     },
     withCredentials: true,
@@ -114,31 +114,5 @@ function deleteBook(id) {
       //console.log(r);
     });
 }
-//function for activation user
-function activateUser(id) {
-  let altToken = "";
-  getToken();
-  altToken = localStorage.getItem('token');
-  return fetch('/admin/user/activate', {
-    method: "POST",
-    headers: {
-      'Content-Type': 'application/json',
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-      'Authorization': 'Bearer ' + altToken
-    },
-    withCredentials: true,
-    credentials: 'include',
-    body: JSON.stringify({ id: id })
-  }).then((response) => response.json())
-    .then((responseData) => {
-      if (responseData.success === true) {
-        location.reload();
-      } else {
-        alert(responseData.message);
-        location.reload();
-      }
-    }).catch(function (r) {
-      //console.log(r);
-    });
-}
+
 

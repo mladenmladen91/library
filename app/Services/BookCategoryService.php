@@ -10,7 +10,7 @@ use App\Models\BookCategory;
 
 class BookCategoryService
 {
-    /** @var $userRepository */
+    /** @var $categoryRepository */
     private $bookCategoryRepository;
 
 

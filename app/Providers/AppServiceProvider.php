@@ -9,6 +9,8 @@ use App\Interfaces\BookCategoryRepositoryInterface;
 use App\Repositories\BookCategoryRepository;
 use App\Interfaces\BookRepositoryInterface;
 use App\Repositories\BookRepository;
+use App\Interfaces\ReservationRepositoryInterface;
+use App\Repositories\ReservationRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -30,6 +32,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             BookRepositoryInterface::class,
             BookRepository::class
+        );
+        $this->app->bind(
+            ReservationRepositoryInterface::class,
+            ReservationRepository::class
         );
     }
 
