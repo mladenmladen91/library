@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Bibliotekat test',
             'email' => 'biblotekar@demo.com',
-            'password' => Hash::make('bibliotekardemo123'),
+            'password' => Hash::make('bibliotekar123'),
             'role_id' => 2,
             'activation' => 1
         ]);
