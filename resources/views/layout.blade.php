@@ -196,8 +196,16 @@
     <script src="/vendor/startbootstrap-sb-admin-2/js/sb-admin-2.min.js"></script>
     <script src="/js/flex.js"></script>
 
-        {{--Includable JS--}}
-        @yield('scripts') 
-	</body>
+    {{--Includable JS--}}
+    @yield('scripts')
 
-            </html>
+    <script>
+        $(document).ready(function() {
+            $("#logout").submit(function() {
+                localStorage.clear();
+            })
+        })
+    </script>
+</body>
+
+</html>

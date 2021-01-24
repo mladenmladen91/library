@@ -10,7 +10,7 @@
 
 <!-- Logout Modal-->
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <form action="{{ route('logout') }}" method="POST">
+    <form id="logout" action="{{ route('logout') }}" method="POST">
         @csrf
         <div class="modal-dialog" role="document">
             <div class="modal-content">

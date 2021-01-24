@@ -30,23 +30,38 @@ class BookController extends Controller
      *      tags={"Books"},
      *      summary="Get book list",
      *      description="Returns list of books",
-     * security={
-     *  {"passport": {}},
-     *   },
      *   @OA\Parameter(
      *      name="limit",
-     *      in="path",
+     *      in="query",
      *      required=true,
      *      @OA\Schema(
-     *           type="integer"
+     *           type="object"
      *      )
      *   ),
      *   @OA\Parameter(
      *      name="offset",
-     *      in="path",
+     *      in="query",
      *      required=true,
      *      @OA\Schema(
-     *           type="integer"
+     *           type="object"
+     *      )
+     *   ),
+     *   @OA\Parameter(
+     *      name="phrase",
+     *      in="query",
+     *      required=true,
+     *   description = "enter just a blank '' if you want all users, when you type another word you get book that has that word in the title",
+     *      @OA\Schema(
+     *           type="object"
+     *      )
+     *   ),
+     *   @OA\Parameter(
+     *      name="status",
+     *      in="query",
+     *      required=true,
+     *      description = "if you enter 2 you get all the books, 1 is for available and 0 is for rented books",
+     *      @OA\Schema(
+     *           type="object"
      *      )
      *   ),
      *  @OA\Response(
@@ -98,23 +113,43 @@ class BookController extends Controller
      *      tags={"Books"},
      *      summary="creating book",
      *      description="route for creating book",
-     * security={
-     *  {"passport": {}},
-     *   },
+     * security={{ "apiAuth": {} }},
      *   @OA\Parameter(
      *      name="title",
-     *      in="path",
+     *      in="query",
      *      required=true,
      *      @OA\Schema(
-     *           type="string"
+     *           type="object"
+     *      )
+     *   ),
+     *   @OA\Parameter(
+     *      name="author",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="object"
      *      )
      *   ),
      * @OA\Parameter(
      *      name="category_id",
-     *      in="path",
+     *      in="query",
      *      required=true,
      *      @OA\Schema(
-     *           type="integer"
+     *           type="object"
+     *      )
+     *   ),
+     *   @OA\Parameter(
+     *      name="publisher",
+     *      in="query",
+     *      @OA\Schema(
+     *           type="object"
+     *      )
+     *   ),
+     *   @OA\Parameter(
+     *      name="print",
+     *      in="query",
+     *      @OA\Schema(
+     *           type="object"
      *      )
      *   ),
      *  @OA\Response(
@@ -152,19 +187,16 @@ class BookController extends Controller
     /**
      * @OA\Post(
      *      path="/book/get",
-     *      operationId="getBookr",
+     *      operationId="getBook",
      *      tags={"Books"},
      *      summary="get data for particular book",
      *      description="book data route",
-     * security={
-     *  {"passport": {}},
-     *   },
-     *   @OA\Parameter(
+     * @OA\Parameter(
      *      name="id",
-     *      in="path",
+     *      in="query",
      *      required=true,
      *      @OA\Schema(
-     *           type="integer"
+     *           type="object"
      *      )
      *   ),
      *  @OA\Response(
@@ -212,31 +244,29 @@ class BookController extends Controller
      *      tags={"Books"},
      *      summary="updating book",
      *      description="route for updating book",
-     * security={
-     *  {"passport": {}},
-     *   },
+     * security={{ "apiAuth": {} }},
      *   @OA\Parameter(
      *      name="title",
-     *      in="path",
+     *      in="query",
      *      required=true,
      *      @OA\Schema(
-     *           type="string"
+     *           type="object"
      *      )
      *   ),
      *   @OA\Parameter(
      *      name="category_id",
-     *      in="path",
+     *      in="query",
      *      required=true,
      *      @OA\Schema(
-     *           type="integer"
+     *           type="object"
      *      )
      *   ),
-     * @OA\Parameter(
+     *   @OA\Parameter(
      *      name="id",
-     *      in="path",
+     *      in="query",
      *      required=true,
      *      @OA\Schema(
-     *           type="integer"
+     *           type="object"
      *      )
      *   ),
      *  @OA\Response(
@@ -278,15 +308,13 @@ class BookController extends Controller
      *      tags={"Books"},
      *      summary="delete book",
      *      description="delete book",
-     * security={
-     *  {"passport": {}},
-     *   },
+     * security={{ "apiAuth": {} }},
      *   @OA\Parameter(
      *      name="id",
-     *      in="path",
+     *      in="query",
      *      required=true,
      *      @OA\Schema(
-     *           type="integer"
+     *           type="object"
      *      )
      *   ),
      *  @OA\Response(

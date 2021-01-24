@@ -30,7 +30,7 @@ class BookCategoryRepository implements BookCategoryRepositoryInterface
     public function save($request)
     {
         BookCategory::create(["name" => $request->name]);
-        return response()->json(["success" => true, "message" => "Korisnik uspješno kreiran!"]);
+        return response()->json(["success" => true, "message" => "Kategorija uspješno kreirana!"]);
     }
     // updating user data
     public function update($request)
@@ -38,13 +38,13 @@ class BookCategoryRepository implements BookCategoryRepositoryInterface
         $bookCategory = BookCategory::find($request->id);
         $bookCategory->name = $request->name;
         $bookCategory->save();
-        return response()->json(["success" => true, "message" => "Korisnik uspješno izmijenjen!"]);
+        return response()->json(["success" => true, "message" => "Kategorija uspješno izmijenjena!"]);
     }
     // deleting user
     public function delete($request)
     {
         $bookCategory = BookCategory::find($request->id);
         $bookCategory->delete();
-        return response()->json(["success" => true, "message" => "Korisnik obrisan"]);
+        return response()->json(["success" => true, "message" => "Kategorija obrisana"]);
     }
 }

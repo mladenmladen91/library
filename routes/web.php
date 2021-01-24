@@ -14,9 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [App\Http\Controllers\FrontController::class, 'index']);
 
 Auth::routes(["register" => false]);
 
@@ -26,6 +24,9 @@ Route::post('/user/register', [App\Http\Controllers\UserController::class, 'regi
 /** route for getting available books */
 Route::post('/book/all', [App\Http\Controllers\BookController::class, 'all'])->name('book.all');
 Route::post('/book/get', [App\Http\Controllers\BookController::class, 'getBook'])->name('book.get');
+Route::get('/book/details/{id}', [App\Http\Controllers\FrontController::class, 'details'])->name('book.details');
+Route::post('/front/dologin', [App\Http\Controllers\FrontController::class, 'doLogin'])->name('user.login');
+Route::post('/front/logout', [App\Http\Controllers\FrontController::class, 'logout'])->name('user.logout');
 
 Route::group(
     ['prefix' => 'admin/'],

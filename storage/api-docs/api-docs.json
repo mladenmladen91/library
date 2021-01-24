@@ -49,12 +49,12 @@
                 },
                 "security": [
                     {
-                        "passport": []
+                        "apiAuth": []
                     }
                 ]
             }
         },
-        "/admin/book-category/store": {
+        "/api/book-category/store": {
             "post": {
                 "tags": [
                     "Books"
@@ -65,10 +65,10 @@
                 "parameters": [
                     {
                         "name": "name",
-                        "in": "path",
+                        "in": "query",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "object"
                         }
                     }
                 ],
@@ -94,12 +94,12 @@
                 },
                 "security": [
                     {
-                        "passport": []
+                        "apiAuth": []
                     }
                 ]
             }
         },
-        "/admin/book-category/update": {
+        "/api/book-category/update": {
             "post": {
                 "tags": [
                     "Books"
@@ -110,18 +110,18 @@
                 "parameters": [
                     {
                         "name": "name",
-                        "in": "path",
+                        "in": "query",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "object"
                         }
                     },
                     {
                         "name": "id",
-                        "in": "path",
+                        "in": "query",
                         "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "object"
                         }
                     }
                 ],
@@ -147,12 +147,12 @@
                 },
                 "security": [
                     {
-                        "passport": []
+                        "apiAuth": []
                     }
                 ]
             }
         },
-        "/admin/book-category/delete": {
+        "/api/book-category/delete": {
             "post": {
                 "tags": [
                     "Books"
@@ -163,10 +163,10 @@
                 "parameters": [
                     {
                         "name": "id",
-                        "in": "path",
+                        "in": "query",
                         "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "object"
                         }
                     }
                 ],
@@ -192,7 +192,7 @@
                 },
                 "security": [
                     {
-                        "passport": []
+                        "apiAuth": []
                     }
                 ]
             }
@@ -208,18 +208,36 @@
                 "parameters": [
                     {
                         "name": "limit",
-                        "in": "path",
+                        "in": "query",
                         "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "object"
                         }
                     },
                     {
                         "name": "offset",
-                        "in": "path",
+                        "in": "query",
                         "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "object"
+                        }
+                    },
+                    {
+                        "name": "phrase",
+                        "in": "query",
+                        "description": "enter just a blank '' if you want all users, when you type another word you get book that has that word in the title",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "if you enter 2 you get all the books, 1 is for available and 0 is for rented books",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
                         }
                     }
                 ],
@@ -242,15 +260,10 @@
                     "404": {
                         "description": "not found"
                     }
-                },
-                "security": [
-                    {
-                        "passport": []
-                    }
-                ]
+                }
             }
         },
-        "/admin/book/store": {
+        "/api/book/store": {
             "post": {
                 "tags": [
                     "Books"
@@ -261,18 +274,40 @@
                 "parameters": [
                     {
                         "name": "title",
-                        "in": "path",
+                        "in": "query",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "object"
+                        }
+                    },
+                    {
+                        "name": "author",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
                         }
                     },
                     {
                         "name": "category_id",
-                        "in": "path",
+                        "in": "query",
                         "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "object"
+                        }
+                    },
+                    {
+                        "name": "publisher",
+                        "in": "query",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    {
+                        "name": "print",
+                        "in": "query",
+                        "schema": {
+                            "type": "object"
                         }
                     }
                 ],
@@ -298,7 +333,7 @@
                 },
                 "security": [
                     {
-                        "passport": []
+                        "apiAuth": []
                     }
                 ]
             }
@@ -310,14 +345,14 @@
                 ],
                 "summary": "get data for particular book",
                 "description": "book data route",
-                "operationId": "getBookr",
+                "operationId": "getBook",
                 "parameters": [
                     {
                         "name": "id",
-                        "in": "path",
+                        "in": "query",
                         "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "object"
                         }
                     }
                 ],
@@ -340,15 +375,10 @@
                     "404": {
                         "description": "not found"
                     }
-                },
-                "security": [
-                    {
-                        "passport": []
-                    }
-                ]
+                }
             }
         },
-        "/admin/book/update": {
+        "/api/book/update": {
             "post": {
                 "tags": [
                     "Books"
@@ -359,26 +389,26 @@
                 "parameters": [
                     {
                         "name": "title",
-                        "in": "path",
+                        "in": "query",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "object"
                         }
                     },
                     {
                         "name": "category_id",
-                        "in": "path",
+                        "in": "query",
                         "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "object"
                         }
                     },
                     {
                         "name": "id",
-                        "in": "path",
+                        "in": "query",
                         "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "object"
                         }
                     }
                 ],
@@ -404,12 +434,12 @@
                 },
                 "security": [
                     {
-                        "passport": []
+                        "apiAuth": []
                     }
                 ]
             }
         },
-        "/admin/book/delete": {
+        "/api/book/delete": {
             "post": {
                 "tags": [
                     "Books"
@@ -420,10 +450,10 @@
                 "parameters": [
                     {
                         "name": "id",
-                        "in": "path",
+                        "in": "query",
                         "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "object"
                         }
                     }
                 ],
@@ -449,7 +479,7 @@
                 },
                 "security": [
                     {
-                        "passport": []
+                        "apiAuth": []
                     }
                 ]
             }
@@ -464,29 +494,104 @@
                 }
             }
         },
-        "/api/user/all": {
+        "/front/doLogin": {
             "post": {
                 "tags": [
                     "Users"
                 ],
-                "summary": "Get user list",
-                "description": "Returns list of user",
-                "operationId": "getUsersList",
+                "summary": "login user from front",
+                "description": "login user from front",
+                "operationId": "loginUser",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            }
+        },
+        "/front/logout": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "logout user from",
+                "description": "logout user",
+                "operationId": "logoutUser",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            }
+        },
+        "/api/reservation/all": {
+            "post": {
+                "tags": [
+                    "Reservations"
+                ],
+                "summary": "Get reservation list",
+                "description": "Returns list of reservations",
+                "operationId": "getReservationList",
                 "parameters": [
                     {
                         "name": "limit",
-                        "in": "path",
+                        "in": "query",
                         "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "object"
                         }
                     },
                     {
                         "name": "offset",
-                        "in": "path",
+                        "in": "query",
                         "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "object"
                         }
                     }
                 ],
@@ -512,7 +617,315 @@
                 },
                 "security": [
                     {
-                        "passport": []
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/reservation/users-and-books": {
+            "get": {
+                "tags": [
+                    "Reservations"
+                ],
+                "summary": "Get users and books list",
+                "description": "Returns list of books and users",
+                "operationId": "getAvailableUsersBooksList",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/reservation/store": {
+            "post": {
+                "tags": [
+                    "Reservations"
+                ],
+                "summary": "creating reservation",
+                "description": "route for creating reservation",
+                "operationId": "storeReservation",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    {
+                        "name": "book_id",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    {
+                        "name": "period",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/reservation/delete": {
+            "post": {
+                "tags": [
+                    "Reservations"
+                ],
+                "summary": "delete reservation",
+                "description": "delete reservation",
+                "operationId": "deletereservation",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/reservation/activate": {
+            "post": {
+                "tags": [
+                    "Reservations"
+                ],
+                "summary": "activate reservation",
+                "description": "activate reservation",
+                "operationId": "activateReservation",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    {
+                        "name": "book_id",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/reservation/book": {
+            "post": {
+                "tags": [
+                    "Reservations"
+                ],
+                "summary": "book reservation",
+                "description": "book reservation",
+                "operationId": "bookReservation",
+                "parameters": [
+                    {
+                        "name": "book_id",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    {
+                        "name": "period",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/user/all": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get user list",
+                "description": "Returns list of user",
+                "operationId": "getUsersList",
+                "parameters": [
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
                     }
                 ]
             }
@@ -528,26 +941,35 @@
                 "parameters": [
                     {
                         "name": "name",
-                        "in": "path",
+                        "in": "query",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "object"
                         }
                     },
                     {
                         "name": "email",
-                        "in": "path",
+                        "in": "query",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "object"
                         }
                     },
                     {
                         "name": "password",
-                        "in": "path",
+                        "in": "query",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "object"
+                        }
+                    },
+                    {
+                        "name": "role_id",
+                        "in": "query",
+                        "description": "enter 1 for administrator, 2 for libraryman and 3 for ordinary user",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
                         }
                     }
                 ],
@@ -573,7 +995,7 @@
                 },
                 "security": [
                     {
-                        "passport": []
+                        "apiAuth": []
                     }
                 ]
             }
@@ -589,10 +1011,10 @@
                 "parameters": [
                     {
                         "name": "id",
-                        "in": "path",
+                        "in": "query",
                         "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "object"
                         }
                     }
                 ],
@@ -618,7 +1040,7 @@
                 },
                 "security": [
                     {
-                        "passport": []
+                        "apiAuth": []
                     }
                 ]
             }
@@ -634,26 +1056,25 @@
                 "parameters": [
                     {
                         "name": "name",
-                        "in": "path",
+                        "in": "query",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "object"
                         }
                     },
                     {
                         "name": "email",
-                        "in": "path",
-                        "required": true,
+                        "in": "query",
                         "schema": {
-                            "type": "string"
+                            "type": "object"
                         }
                     },
                     {
                         "name": "id",
-                        "in": "path",
+                        "in": "query",
                         "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "object"
                         }
                     }
                 ],
@@ -679,7 +1100,7 @@
                 },
                 "security": [
                     {
-                        "passport": []
+                        "apiAuth": []
                     }
                 ]
             }
@@ -695,10 +1116,10 @@
                 "parameters": [
                     {
                         "name": "id",
-                        "in": "path",
+                        "in": "query",
                         "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "object"
                         }
                     }
                 ],
@@ -724,7 +1145,7 @@
                 },
                 "security": [
                     {
-                        "passport": []
+                        "apiAuth": []
                     }
                 ]
             }
@@ -743,7 +1164,7 @@
                         "in": "path",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "object"
                         }
                     },
                     {
@@ -751,7 +1172,7 @@
                         "in": "path",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "object"
                         }
                     },
                     {
@@ -759,7 +1180,15 @@
                         "in": "path",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "object"
+                        }
+                    },
+                    {
+                        "name": "password_confirmation",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
                         }
                     }
                 ],
@@ -782,12 +1211,7 @@
                     "404": {
                         "description": "not found"
                     }
-                },
-                "security": [
-                    {
-                        "passport": []
-                    }
-                ]
+                }
             }
         },
         "/api/user/activate": {
@@ -801,10 +1225,10 @@
                 "parameters": [
                     {
                         "name": "id",
-                        "in": "path",
+                        "in": "query",
                         "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "object"
                         }
                     }
                 ],
@@ -830,9 +1254,21 @@
                 },
                 "security": [
                     {
-                        "passport": []
+                        "apiAuth": []
                     }
                 ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "apiAuth": {
+                "type": "http",
+                "description": "Login with email and password to get the authentication token",
+                "name": "Token based Based",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
             }
         }
     },

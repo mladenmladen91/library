@@ -2,6 +2,7 @@
 function getUsers(page) {
   let offset = page * 15;
   let altToken = "";
+  let limit = 15
   getToken();
   altToken = localStorage.getItem('token');
   if (!localStorage.getItem("token")) {
@@ -15,7 +16,7 @@ function getUsers(page) {
     },
     withCredentials: true,
     credentials: 'include',
-    body: JSON.stringify({ offset: offset, limit: 15 })
+    body: JSON.stringify({ offset: offset, limit: limit })
   }).then((response) => response.json())
     .then((responseData) => {
       return responseData;
