@@ -34,23 +34,21 @@ class UserController extends Controller
      *      tags={"Users"},
      *      summary="Get user list",
      *      description="Returns list of user",
-     * security={
-     *  {"passport": {}},
-     *   },
+     *   security={{ "apiAuth": {} }},
      *   @OA\Parameter(
      *      name="limit",
-     *      in="path",
+     *      in="query",
      *      required=true,
      *      @OA\Schema(
-     *           type="integer"
+     *           type="object"
      *      )
      *   ),
      *   @OA\Parameter(
      *      name="offset",
-     *      in="path",
+     *      in="query",
      *      required=true,
      *      @OA\Schema(
-     *           type="integer"
+     *           type="object"
      *      )
      *   ),
      *  @OA\Response(
@@ -95,31 +93,38 @@ class UserController extends Controller
      *      tags={"Users"},
      *      summary="creating user",
      *      description="route for creating users",
-     * security={
-     *  {"passport": {}},
-     *   },
+     * security={{ "apiAuth": {} }},
      *   @OA\Parameter(
      *      name="name",
-     *      in="path",
+     *      in="query",
      *      required=true,
      *      @OA\Schema(
-     *           type="string"
+     *           type="object"
      *      )
      *   ),
      *   @OA\Parameter(
      *      name="email",
-     *      in="path",
+     *      in="query",
      *      required=true,
      *      @OA\Schema(
-     *           type="string"
+     *           type="object"
      *      )
      *   ),
      * @OA\Parameter(
      *      name="password",
-     *      in="path",
+     *      in="query",
      *      required=true,
      *      @OA\Schema(
-     *           type="string"
+     *           type="object"
+     *      )
+     *   ),
+     * @OA\Parameter(
+     *      name="role_id",
+     *      in="query",
+     *      required=true,
+     *      description = "enter 1 for administrator, 2 for libraryman and 3 for ordinary user",
+     *      @OA\Schema(
+     *           type="object"
      *      )
      *   ),
      *  @OA\Response(
@@ -165,15 +170,13 @@ class UserController extends Controller
      *      tags={"Users"},
      *      summary="get data for particular user",
      *      description="user data route",
-     * security={
-     *  {"passport": {}},
-     *   },
+     * security={{ "apiAuth": {} }},
      *   @OA\Parameter(
      *      name="id",
-     *      in="path",
+     *      in="query",
      *      required=true,
      *      @OA\Schema(
-     *           type="integer"
+     *           type="object"
      *      )
      *   ),
      *  @OA\Response(
@@ -214,31 +217,28 @@ class UserController extends Controller
      *      tags={"Users"},
      *      summary="updating user",
      *      description="route for updating user",
-     * security={
-     *  {"passport": {}},
-     *   },
+     * security={{ "apiAuth": {} }},
      *   @OA\Parameter(
      *      name="name",
-     *      in="path",
-     *      required=true,
+     *      in="query",
+     *   required=true,
      *      @OA\Schema(
-     *           type="string"
+     *           type="object"
      *      )
      *   ),
      *   @OA\Parameter(
      *      name="email",
-     *      in="path",
-     *      required=true,
+     *      in="query",
      *      @OA\Schema(
-     *           type="string"
+     *           type="object"
      *      )
      *   ),
      * @OA\Parameter(
      *      name="id",
-     *      in="path",
+     *      in="query",
      *      required=true,
      *      @OA\Schema(
-     *           type="integer"
+     *           type="object"
      *      )
      *   ),
      *  @OA\Response(
@@ -279,15 +279,13 @@ class UserController extends Controller
      *      tags={"Users"},
      *      summary="delete user",
      *      description="delete user",
-     * security={
-     *  {"passport": {}},
-     *   },
+     * security={{ "apiAuth": {} }},
      *   @OA\Parameter(
      *      name="id",
-     *      in="path",
+     *      in="query",
      *      required=true,
      *      @OA\Schema(
-     *           type="integer"
+     *           type="object"
      *      )
      *   ),
      *  @OA\Response(
@@ -329,15 +327,12 @@ class UserController extends Controller
      *      tags={"Users"},
      *      summary="registering user",
      *      description="route for registering users",
-     * security={
-     *  {"passport": {}},
-     *   },
      *   @OA\Parameter(
      *      name="name",
      *      in="path",
      *      required=true,
      *      @OA\Schema(
-     *           type="string"
+     *           type="object"
      *      )
      *   ),
      *   @OA\Parameter(
@@ -345,7 +340,7 @@ class UserController extends Controller
      *      in="path",
      *      required=true,
      *      @OA\Schema(
-     *           type="string"
+     *           type="object"
      *      )
      *   ),
      * @OA\Parameter(
@@ -353,7 +348,7 @@ class UserController extends Controller
      *      in="path",
      *      required=true,
      *      @OA\Schema(
-     *           type="string"
+     *           type="object"
      *      )
      *   ),
      * @OA\Parameter(
@@ -361,7 +356,7 @@ class UserController extends Controller
      *      in="path",
      *      required=true,
      *      @OA\Schema(
-     *           type="string"
+     *           type="object"
      *      )
      *   ), 
      *  @OA\Response(
@@ -411,15 +406,13 @@ class UserController extends Controller
      *      tags={"Users"},
      *      summary="activate user",
      *      description="activate user",
-     * security={
-     *  {"passport": {}},
-     *   },
+     * security={{ "apiAuth": {} }},
      *   @OA\Parameter(
      *      name="id",
-     *      in="path",
+     *      in="query",
      *      required=true,
      *      @OA\Schema(
-     *           type="integer"
+     *           type="object"
      *      )
      *   ),
      *  @OA\Response(

@@ -30,9 +30,7 @@ class BookCategoryController extends Controller
      *      tags={"Books"},
      *      summary="Get category list",
      *      description="Returns list of categories",
-     * security={
-     *  {"passport": {}},
-     *   },
+     * security={{ "apiAuth": {} }},
      *  @OA\Response(
      *          response=200,
      *          description="Success",
@@ -72,15 +70,13 @@ class BookCategoryController extends Controller
      *      tags={"Books"},
      *      summary="creating category",
      *      description="route for creating category",
-     * security={
-     *  {"passport": {}},
-     *   },
+     * security={{ "apiAuth": {} }},
      *   @OA\Parameter(
      *      name="name",
-     *      in="path",
+     *      in="query",
      *      required=true,
      *      @OA\Schema(
-     *           type="string"
+     *           type="object"
      *      )
      *   ),
      *  @OA\Response(
@@ -122,23 +118,21 @@ class BookCategoryController extends Controller
      *      tags={"Books"},
      *      summary="updating category",
      *      description="route for updating category",
-     * security={
-     *  {"passport": {}},
-     *   },
+     * security={{ "apiAuth": {} }},
      *   @OA\Parameter(
      *      name="name",
-     *      in="path",
+     *      in="query",
      *      required=true,
      *      @OA\Schema(
-     *           type="string"
+     *           type="object"
      *      )
      *   ),
      * @OA\Parameter(
      *      name="id",
-     *      in="path",
+     *      in="query",
      *      required=true,
      *      @OA\Schema(
-     *           type="integer"
+     *           type="object"
      *      )
      *   ),
      *  @OA\Response(
@@ -180,15 +174,13 @@ class BookCategoryController extends Controller
      *      tags={"Books"},
      *      summary="delete category",
      *      description="delete category",
-     * security={
-     *  {"passport": {}},
-     *   },
+     *security={{ "apiAuth": {} }},
      *   @OA\Parameter(
      *      name="id",
-     *      in="path",
+     *      in="query",
      *      required=true,
      *      @OA\Schema(
-     *           type="integer"
+     *           type="object"
      *      )
      *   ),
      *  @OA\Response(

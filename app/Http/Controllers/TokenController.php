@@ -14,6 +14,6 @@ class TokenController extends Controller
         $user = auth()->user();
         $accessToken = $user->createToken('authToken');
 
-        return response()->json(["accessToken" => $accessToken->accessToken]);
+        return response()->json(["accessToken" => $accessToken->accessToken, "user" => auth()->user()]);
     }
 }

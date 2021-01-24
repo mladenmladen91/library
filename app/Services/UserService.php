@@ -80,7 +80,7 @@ class UserService
                 $message->to("jelovacmladen@gmail.com")->subject("Novi korisnik");
                 $message->from('no-reply@test.me', 'library.me');
             });
-            return response()->json(["success" => true, "message" => "Poruka psolata"]);
+            return response()->json(["success" => true, "message" => "Poruka poslata"]);
         } catch (\Exception $e) {
             return response()->json(["success" => false, "message" => "Mail nije poslat"]);
         }

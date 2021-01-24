@@ -32,23 +32,21 @@ class ReservationController extends Controller
      *      tags={"Reservations"},
      *      summary="Get reservation list",
      *      description="Returns list of reservations",
-     * security={
-     *  {"passport": {}},
-     *   },
+     * security={{ "apiAuth": {} }},
      *   @OA\Parameter(
      *      name="limit",
-     *      in="path",
+     *      in="query",
      *      required=true,
      *      @OA\Schema(
-     *           type="integer"
+     *           type="object"
      *      )
      *   ),
      *   @OA\Parameter(
      *      name="offset",
-     *      in="path",
+     *      in="query",
      *      required=true,
      *      @OA\Schema(
-     *           type="integer"
+     *           type="object"
      *      )
      *   ),
      *  @OA\Response(
@@ -89,9 +87,7 @@ class ReservationController extends Controller
      *      tags={"Reservations"},
      *      summary="Get users and books list",
      *      description="Returns list of books and users",
-     * security={
-     *  {"passport": {}},
-     *   },
+     * security={{ "apiAuth": {} }},
      *  @OA\Response(
      *          response=200,
      *          description="Success",
@@ -128,34 +124,32 @@ class ReservationController extends Controller
      * @OA\Post(
      *      path="/api/reservation/store",
      *      operationId="storeReservation",
-     *      tags={"reservationss"},
+     *      tags={"Reservations"},
      *      summary="creating reservation",
      *      description="route for creating reservation",
-     * security={
-     *  {"passport": {}},
-     *   },
+     * security={{ "apiAuth": {} }},
      * @OA\Parameter(
      *      name="user_id",
-     *      in="path",
+     *      in="query",
      *      required=true,
      *      @OA\Schema(
-     *           type="integer"
+     *           type="object"
      *      )
      *   ),
      * @OA\Parameter(
      *      name="book_id",
-     *      in="path",
+     *      in="query",
      *      required=true,
      *      @OA\Schema(
-     *           type="integer"
+     *           type="object"
      *      )
      *   ),
      * @OA\Parameter(
      *      name="period",
-     *      in="path",
+     *      in="query",
      *      required=true,
      *      @OA\Schema(
-     *           type="integer"
+     *           type="object"
      *      )
      *   ),
      *  @OA\Response(
@@ -197,15 +191,13 @@ class ReservationController extends Controller
      *      tags={"Reservations"},
      *      summary="delete reservation",
      *      description="delete reservation",
-     * security={
-     *  {"passport": {}},
-     *   },
+     * security={{ "apiAuth": {} }},
      *   @OA\Parameter(
      *      name="id",
-     *      in="path",
+     *      in="query",
      *      required=true,
      *      @OA\Schema(
-     *           type="integer"
+     *           type="object"
      *      )
      *   ),
      *  @OA\Response(
@@ -243,26 +235,24 @@ class ReservationController extends Controller
      * @OA\Post(
      *      path="/api/reservation/activate",
      *      operationId="activateReservation",
-     *      tags={"Users"},
+     *      tags={"Reservations"},
      *      summary="activate reservation",
      *      description="activate reservation",
-     * security={
-     *  {"passport": {}},
-     *   },
+     * security={{ "apiAuth": {} }},
      *   @OA\Parameter(
      *      name="id",
-     *      in="path",
+     *      in="query",
      *      required=true,
      *      @OA\Schema(
-     *           type="integer"
+     *           type="object"
      *      )
      *   ),
      * @OA\Parameter(
      *      name="book_id",
-     *      in="path",
+     *      in="query",
      *      required=true,
      *      @OA\Schema(
-     *           type="integer"
+     *           type="object"
      *      )
      *   ), 
      *  @OA\Response(
@@ -300,34 +290,32 @@ class ReservationController extends Controller
      * @OA\Post(
      *      path="/api/reservation/book",
      *      operationId="bookReservation",
-     *      tags={"Users"},
+     *      tags={"Reservations"},
      *      summary="book reservation",
      *      description="book reservation",
-     * security={
-     *  {"passport": {}},
-     *   },
+     * security={{ "apiAuth": {} }},
      * @OA\Parameter(
      *      name="book_id",
-     *      in="path",
+     *      in="query",
      *      required=true,
      *      @OA\Schema(
-     *           type="integer"
+     *           type="object"
      *      )
      *   ),
      * @OA\Parameter(
      *      name="user_id",
-     *      in="path",
+     *      in="query",
      *      required=true,
      *      @OA\Schema(
-     *           type="integer"
+     *           type="object"
      *      )
      *   ),
      * @OA\Parameter(
      *      name="period",
-     *      in="path",
+     *      in="query",
      *      required=true,
      *      @OA\Schema(
-     *           type="integer"
+     *           type="object"
      *      )
      *   ), 
      *  @OA\Response(

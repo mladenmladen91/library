@@ -1,7 +1,8 @@
-// function for getting users
+// function for getting books
 function getPages(page, phrase, status) {
   let offset = page * 15;
   let altToken = "";
+  let limit = 15;
   getToken();
   altToken = localStorage.getItem('token');
   return fetch('/book/all', {
@@ -13,7 +14,7 @@ function getPages(page, phrase, status) {
     },
     /*withCredentials: true,
     credentials: 'include', */
-    body: JSON.stringify({ offset: offset, limit: 15, phrase: phrase, status: status })
+    body: JSON.stringify({ offset: offset, limit: limit, phrase: phrase, status: status })
   }).then((response) => response.json())
     .then((responseData) => {
       return responseData;
@@ -115,7 +116,7 @@ function deleteBook(id) {
     });
 }
 
-// function for sreserving book
+// function for reserving book
 function reserveBook(form) {
   let altToken = "";
   getToken();
@@ -133,6 +134,44 @@ function reserveBook(form) {
     response.json().then(function (json) {
       alert(json.message);
       location.reload();
+    });
+  }).catch(function (r) {
+    return reject(r)
+  });
+}
+
+// function for login front
+function login(form) {
+  let formData = new FormData(form);
+  console.log(form);
+  return fetch('/front/dologin', {
+    method: "POST",
+    body: formData
+  }).then(function (response) {
+    response.json().then(function (json) {
+      if (json.success == true) {
+        localStorage.setItem('token', json.accessToken)
+        localStorage.setItem('user', JSON.stringify(json.user));
+        location.reload();
+      } else {
+        alert(json.message);
+      }
+    });
+  }).catch(function (r) {
+    return reject(r)
+  });
+}
+
+// function for logout front
+function logout() {
+  return fetch('/front/logout', {
+    method: "POST",
+  }).then(function (response) {
+    response.json().then(function (json) {
+      if (json.success === true) {
+        localStorage.clear();
+        location.reload();
+      }
     });
   }).catch(function (r) {
     return reject(r)

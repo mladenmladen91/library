@@ -49,14 +49,29 @@ We would like to extend our thanks to the following sponsors for funding Laravel
 
 Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Code of Conduct
+## Table of contents
+* [General info](#general-info)
+* [Technologies](#technologies)
+* [Setup](#setup)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## General info
+This project is library simulator. It has 3 type of users: Admin, Libraryworker, Simple User. Admin has power of creating CRUD operations of users and also for books. LibraryWorker can manipulate with books, categories and reservations. It can also allow reservations users. Users can log into crm section to reserve a book and to check their reservation history. They can also do the reservation on the site directly. But they have to be logged in. 
+	
+## Technologies
+Project is created with:
+* Laravel version : 8
+* Bootstrap version: 4
+* Jquery version: 3.1
+	
+## Setup
+To run this project, install it locally:
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```
+$ cd ../project_directory
+$ git clone https://github.com/mladenmladen91/library.git
+$ composer install
+$ create .env file and enter nesscessary data
+$ php artisan key:generate
+$ php artisan migrate
+$ php artisan passport:install
+$ php artisan db:seed
