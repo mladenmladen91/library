@@ -26,14 +26,16 @@ class UserSeeder extends Seeder
             'name' => 'Bibliotekat test',
             'email' => 'biblotekar@demo.com',
             'password' => Hash::make('bibliotekardemo123'),
-            'role_id' => 2
+            'role_id' => 2,
+            'activation' => 1
         ]);
 
         User::create([
             'name' => 'Korisnik test',
             'email' => 'korisnik@demo.com',
             'password' => Hash::make('korisnikdemo123'),
-            'role_id' => 3
+            'role_id' => 3,
+            'activation' => 1
         ]);
     }
 }
