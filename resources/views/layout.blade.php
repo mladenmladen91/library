@@ -194,7 +194,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="/vendor/startbootstrap-sb-admin-2/js/sb-admin-2.min.js"></script>
-    <script src="/js/flex.js"></script>
+    <!--<script src="/js/flex.js"></script>-->
 
     {{--Includable JS--}}
     @yield('scripts')

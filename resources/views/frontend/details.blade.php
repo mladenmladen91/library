@@ -107,99 +107,99 @@
 	<div class="row" style="height: 97.5%;">
 		<div class="col-lg-12 p-4" style="height: 100%;">
 			<div class="card shadow mb-4" style="height: 100%;">
-				
+
 				<div class="card-body">
-					  <div class="row text-center">
-					     <div class="col-lg-4 mb-2 text-center">
-							 <label><b>Author</b></label>
-							 <p id="author"></p>
-						  </div>
-						  <div class="col-lg-4 mb-2 text-center">
-							  <label><b>Izdavač</b></label>
-							 <p id="publisher"></p>
-						  </div>
-						  <div class="col-lg-4 mb-2 text-center">
-							  <label><b>Štampao</b></label>
-							 <p id="print"></p>
-						  </div>
-						  <div class="col-lg-4 mb-2 text-center">
-							  <label><b>Status</b></label>
-							 <p id="status"></p>
-						  </div>
-						  <div class="col-lg-12" id="reserve_holder">
-						    
-						  </div>
-					  </div>
+					<div class="row text-center">
+						<div class="col-lg-4 mb-2 text-center">
+							<label><b>Author</b></label>
+							<p id="author"></p>
+						</div>
+						<div class="col-lg-4 mb-2 text-center">
+							<label><b>Izdavač</b></label>
+							<p id="publisher"></p>
+						</div>
+						<div class="col-lg-4 mb-2 text-center">
+							<label><b>Štampao</b></label>
+							<p id="print"></p>
+						</div>
+						<div class="col-lg-4 mb-2 text-center">
+							<label><b>Status</b></label>
+							<p id="status"></p>
+						</div>
+						<div class="col-lg-12" id="reserve_holder">
+
+						</div>
+					</div>
 				</div>
-              </div>
-		</div>
-		
-<div class="modal fade" id="reservationModal" tabindex="-1" role="dialog">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Rezerviši knjigu</h5>
-				<button class="close" type="button" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">×</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				<form id="reserve-form" action="" method="POST">
-
-					<div class="inputWrapper  m-2 text-danger" data-error-msg>
-					</div>
-					<div class="inputWrapper  m-2 ">
-						<input type="hidden" name="user_id" id="user_id" value="" />
-						<input type="hidden" name="book_id" id="book_id" value="" />
-						<label for="title">Period *</label>
-						<select class="form-control" type="text" name="period">
-						   <option value="7">7 dana</option>
-							<option value="15">15 dana</option>
-							<option value="30">30 dana</option>
-						</select>
-					</div>
-
-				</form>
-			</div>
-			<div class="modal-footer">
-				<button class="btn btn-secondary" type="button" data-dismiss="modal">Otkazi</button>
-				<button class="btn btn-success" type="button" data-save-reserve>Rezerviši</button>
 			</div>
 		</div>
-	</div>
-</div>
-		
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Login</h5>
-				<button class="close" type="button" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">×</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				<form id="login-form" action="" method="POST">
 
-					<div class="inputWrapper  m-2 text-danger" id="login-error">
+		<div class="modal fade" id="reservationModal" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Rezerviši knjigu</h5>
+						<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">×</span>
+						</button>
 					</div>
-					<div class="inputWrapper  m-2 ">
-						<label for="title">E-mail*</label>
-						<input class="form-control" name="email" id="email" />
+					<div class="modal-body">
+						<form id="reserve-form" action="" method="POST">
+
+							<div class="inputWrapper  m-2 text-danger" data-error-msg>
+							</div>
+							<div class="inputWrapper  m-2 ">
+								<input type="hidden" name="user_id" id="user_id" value="" />
+								<input type="hidden" name="book_id" id="book_id" value="" />
+								<label for="title">Period *</label>
+								<select class="form-control" type="text" name="period">
+									<option value="7">7 dana</option>
+									<option value="15">15 dana</option>
+									<option value="30">30 dana</option>
+								</select>
+							</div>
+
+						</form>
 					</div>
-                    <div class="inputWrapper  m-2 ">
-						<label for="title">Password*</label>
-						<input type="password" class="form-control" name="password" id="password" />
+					<div class="modal-footer">
+						<button class="btn btn-secondary" type="button" data-dismiss="modal">Otkazi</button>
+						<button class="btn btn-success" type="button" data-save-reserve>Rezerviši</button>
 					</div>
-				</form>
-			</div>
-			<div class="modal-footer">
-				<button class="btn btn-secondary" type="button" data-dismiss="modal">Otkazi</button>
-				<button class="btn btn-success" type="button" data-login>Login</button>
+				</div>
 			</div>
 		</div>
-	</div>
-</div>		
+
+		<div class="modal fade" id="loginModal" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Login</h5>
+						<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">×</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form id="login-form" action="" method="POST">
+
+							<div class="inputWrapper  m-2 text-danger" id="login-error">
+							</div>
+							<div class="inputWrapper  m-2 ">
+								<label for="title">E-mail*</label>
+								<input class="form-control" name="email" id="email" />
+							</div>
+							<div class="inputWrapper  m-2 ">
+								<label for="title">Password*</label>
+								<input type="password" class="form-control" name="password" id="password" />
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-secondary" type="button" data-dismiss="modal">Otkazi</button>
+						<button class="btn btn-success" type="button" data-login>Login</button>
+					</div>
+				</div>
+			</div>
+		</div>
 
 	</div>
 
@@ -212,7 +212,7 @@
 
 	<!-- Custom scripts for all pages-->
 	<script src="/vendor/startbootstrap-sb-admin-2/js/sb-admin-2.min.js"></script>
-	<script src="/js/flex.js"></script>
+
 
 	{{--Includable JS--}}
 	@yield('scripts')
@@ -228,7 +228,7 @@
 
 <script>
 	document.addEventListener('DOMContentLoaded', () => {
-         // getting data for user
+		// getting data for user
 		let general = 0;
 		getBook({{$id}}).then(response => {
 			$("title").text(response.book.title);
@@ -237,49 +237,51 @@
 			$("#publisher").text(response.book.publisher);
 			$("#print").text(response.book.print);
 			let status = "izdata";
-			 if(response.book.status == 1){
-				 status = "slobodna";
+			if (response.book.status == 1) {
+				status = "slobodna";
 			}
 			general = response.book.status;
-			
+
 			$("#status").text(status);
 			// filling the book data
-		let reserveContent = "";
-		if(localStorage.getItem("token")){
-			if(general === 1){
-				reserveContent = "<a style='cursor:pointer;color:blue' data-toggle='modal' data-target='#reservationModal'>Rezerviši knjigu</a>";
-			}else{
-				reserveContent = "<p>Knjiga nije dostupna!</p>";
+			let reserveContent = "";
+			if (localStorage.getItem("token")) {
+				if (general === 1) {
+					reserveContent = "<a style='cursor:pointer;color:blue' data-toggle='modal' data-target='#reservationModal'>Rezerviši knjigu</a>";
+				} else {
+					reserveContent = "<p>Knjiga nije dostupna!</p>";
+				}
+				let user = JSON.parse(localStorage.getItem('user'));
+				$("#user_id").val(user.id);
+				$("#book_id").val(response.book.id);
+				$(".logout").css({
+					"display": "block"
+				});
+				document.querySelector('#logout').addEventListener('click', () => {
+					logout();
+				});
+			} else {
+				reserveContent = "<p><a style='cursor:pointer;color:blue' data-toggle='modal' data-target='#loginModal'>Ulogujte se</a> ili <a href='/register'>registrujte</a> da bi rezervisali knjigu</p>"
 			}
-			let user = JSON.parse(localStorage.getItem('user'));
-			$("#user_id").val(user.id);
-			$("#book_id").val(response.book.id);
-			$(".logout").css({"display":"block"});
-			 document.querySelector('#logout').addEventListener('click', () => {
-			     logout();
-             });
-		}else{
-		   reserveContent = "<p><a style='cursor:pointer;color:blue' data-toggle='modal' data-target='#loginModal'>Ulogujte se</a> ili <a href='/register'>registrujte</a> da bi rezervisali knjigu</p>"
-		}
-		$("#reserve_holder").html(reserveContent);
+			$("#reserve_holder").html(reserveContent);
 		});
-		
-		
+
+
 		// login logic
-		 document.querySelector('[data-login]').addEventListener('click', () => {
-            let email = document.querySelector('#loginModal').querySelector('#email').value;
+		document.querySelector('[data-login]').addEventListener('click', () => {
+			let email = document.querySelector('#loginModal').querySelector('#email').value;
 			let password = document.querySelector('#loginModal').querySelector('#password').value;
-			if(email != "" && password != ""){ 
-                login($("#login-form")[0]);
-			}else{
+			if (email != "" && password != "") {
+				login($("#login-form")[0]);
+			} else {
 				alert("Popunite potrebne podatke!");
 			}
-        });
-		
+		});
+
 		// sending reservation request
 		// saving reservation logistic
-        document.querySelector('[data-save-reserve]').addEventListener('click', () => {
+		document.querySelector('[data-save-reserve]').addEventListener('click', () => {
 			reserveBook($("#reserve-form")[0]);
-        });
+		});
 	})
 </script>
